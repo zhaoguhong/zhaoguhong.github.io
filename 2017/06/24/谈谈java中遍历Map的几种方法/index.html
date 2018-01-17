@@ -3,6 +3,16 @@
 <head>
   <meta charset="utf-8">
   
+  
+  <meta name="description" content="zhaoguhong的博客" />
+  
+
+  
+  
+  
+  
+  
+  
   <title>谈谈java中遍历Map的几种方法 | 赵孤鸿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点 先初始化一个map 123public class TestMap &amp;#123;  public static Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;Integer, In">
@@ -18,74 +28,64 @@
 <meta name="twitter:title" content="谈谈java中遍历Map的几种方法">
 <meta name="twitter:description" content="java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点 先初始化一个map 123public class TestMap &amp;#123;  public static Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;Integer, In">
   
-    <link rel="alternate" href="/atom.xml" title="赵孤鸿" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/css/images/favicon.ico">
   
   <link rel="stylesheet" href="/css/style.css">
   
 
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
 </head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">赵孤鸿</a>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="赵孤鸿" rel="home">赵孤鸿</a>
       </h1>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaoguhong.com"></form>
-      </div>
-    </div>
-  </div>
+        <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+        <h2 class="site-description"><script>hitokoto();</script></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-谈谈java中遍历Map的几种方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/24/谈谈java中遍历Map的几种方法/" class="article-date">
-  <time datetime="2017-06-24T14:01:51.000Z" itemprop="datePublished">2017-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-谈谈java中遍历Map的几种方法" class="post-谈谈java中遍历Map的几种方法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
         
   
-    <h1 class="article-title" itemprop="name">
+    <h1 class="entry-title article-title">
       谈谈java中遍历Map的几种方法
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://zhaoguhong.com/2017/06/24/谈谈java中遍历Map的几种方法/" data-id="cjcine4av000lm35udezuh858" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
       
         <p>java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点</p>
 <p>先初始化一个map</p>
@@ -113,79 +113,58 @@
 <p>如果需要在遍历过程中增加元素，可以新建一个临时map存放新增的元素，等遍历完毕，再把临时map放到原来的map中</p>
 
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoguhong.com/2017/06/24/谈谈java中遍历Map的几种方法/" data-id="cjcinbmbw000rle5umrwmo866" class="article-share-link">Share</a>
-      
-      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2017/06/24/谈谈java中遍历Map的几种方法/">
+    <time datetime="2017-06-24T14:01:51.000Z" class="entry-date">
+        2017-06-24
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/">jdk</a></li></ul>
 
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/08/01/java 迭代器浅析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          java 迭代器浅析
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/05/28/java反射/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">java反射</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术周边/">技术周边</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2017/08/01/java 迭代器浅析/" rel="prev"><span class="meta-nav">←</span> java 迭代器浅析</a></span>
+    
+    
+        <span class="nav-next"><a href="/2017/05/28/java反射/" rel="next">java反射 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
     </div>
-  </div>
-
-
+</form></aside>
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/jdk/" style="font-size: 20px;">jdk</a> <a href="/tags/spring/" style="font-size: 16.67px;">spring</a> <a href="/tags/技术周边/" style="font-size: 10px;">技术周边</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/生活/" style="font-size: 13.33px;">生活</a>
-    </div>
-  </div>
-
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
-    </div>
-  </div>
-
-
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
       <ul>
         
           <li>
@@ -210,32 +189,37 @@
         
       </ul>
     </div>
-  </div>
+  </aside>
 
   
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 zhaoguhong<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术周边/">技术周边</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/jdk/" style="font-size: 20px;">jdk</a> <a href="/tags/spring/" style="font-size: 16.67px;">spring</a> <a href="/tags/技术周边/" style="font-size: 10px;">技术周边</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/生活/" style="font-size: 13.33px;">生活</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 zhaoguhong
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -243,6 +227,10 @@
 
 
 <script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
 
   </div>
 </body>
