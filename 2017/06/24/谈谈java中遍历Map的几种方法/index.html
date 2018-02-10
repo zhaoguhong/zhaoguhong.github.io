@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://zhaoguhong.com">
   <title>谈谈java中遍历Map的几种方法 | 赵孤鸿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java中的map遍历有多种方法，从最早">
+  <meta name="description" content="java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点 先初始化一个map 123public class TestMap &amp;#123;  public static Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;Integer, In">
 <meta name="keywords" content="jdk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈java中遍历Map的几种方法">
 <meta property="og:url" content="http://zhaoguhong.com/2017/06/24/谈谈java中遍历Map的几种方法/index.html">
 <meta property="og:site_name" content="赵孤鸿">
-<meta property="og:description" content="java中的map遍历有多种方法，从最早">
+<meta property="og:description" content="java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点 先初始化一个map 123public class TestMap &amp;#123;  public static Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;Integer, In">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-10T15:50:32.000Z">
+<meta property="og:updated_time" content="2018-02-10T15:57:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈java中遍历Map的几种方法">
-<meta name="twitter:description" content="java中的map遍历有多种方法，从最早">
+<meta name="twitter:description" content="java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点 先初始化一个map 123public class TestMap &amp;#123;  public static Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;Integer, In">
   
     <link rel="alternative" href="/atom.xml" title="赵孤鸿" type="application/atom+xml">
   
@@ -169,7 +169,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java中的map遍历有多种方法，从最早</p>
+        <p>java中的map遍历有多种方法，从最早的Iterator，到java5支持的foreach,再到java8 Lambda，让我们一起来看下具体的用法以及各自的优缺点</p>
+<p>先初始化一个map</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMap</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="keySet-values"><a href="#keySet-values" class="headerlink" title="keySet values"></a>keySet values</h2><p>如果只需要map的key或者value，用map的keySet或values方法无疑是最方便的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// KeySet 获取key</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testKeySet</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">for</span> (Integer key : map.keySet()) &#123;</div><div class="line">    System.out.println(key);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// values 获取value</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testValues</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">for</span> (Integer value : map.values()) &#123;</div><div class="line">    System.out.println(value);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="keySet-get-key"><a href="#keySet-get-key" class="headerlink" title="keySet get(key)"></a>keySet get(key)</h2><p>如果需要同时获取key和value，可以先获取key,然后再通过map的get(key)获取value</p>
+<p>需要说明的是，该方法不是最优选择，一般不推荐使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// keySet get(key) 获取key and value</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testKeySetAndGetKey</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">for</span> (Integer key : map.keySet()) &#123;</div><div class="line">    System.out.println(key + <span class="string">":"</span> + map.get(key));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="entrySet"><a href="#entrySet" class="headerlink" title="entrySet"></a>entrySet</h2><p>通过对map entrySet的遍历，也可以同时拿到key和value，一般情况下，性能上要优于上一种,这一种也是最常用的遍历方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entrySet 获取key and value</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testEntry</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</div><div class="line">    System.out.println(entry.getKey() + <span class="string">":"</span> + entry.getValue());</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h2><p>对于上面的几种foreach都可以用Iterator代替，其实foreach在java5中才被支持，foreach的写法看起来更简洁</p>
+<p>但Iterator也有其优势：在用foreach遍历map时，如果改变其大小，会报错，但如果只是删除元素，可以使用Iterator的remove方法删除元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Iterator entrySet 获取key and value</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIterator</span><span class="params">()</span> </span>&#123;</div><div class="line">  Iterator&lt;Map.Entry&lt;Integer, Integer&gt;&gt; it = map.entrySet().iterator();</div><div class="line">  <span class="keyword">while</span> (it.hasNext()) &#123;</div><div class="line">    Map.Entry&lt;Integer, Integer&gt; entry = it.next();</div><div class="line">    System.out.println(entry.getKey() + <span class="string">":"</span> + entry.getValue());</div><div class="line">    <span class="comment">// it.remove(); 删除元素</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><p>java8提供了Lambda表达式支持，语法看起来更简洁，可以同时拿到key和value，不过，经测试，性能低于entrySet,所以更推荐用entrySet的方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Lambda 获取key and value</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLambda</span><span class="params">()</span> </span>&#123;</div><div class="line">  map.forEach((key, value) -&gt; &#123;</div><div class="line">    System.out.println(key + <span class="string">":"</span> + value);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="简单性能测试"><a href="#简单性能测试" class="headerlink" title="简单性能测试"></a>简单性能测试</h2><p>用10万条数据，做了一个简单性能测试，数据类型为Integer，map实现选取HashMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> &#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</div><div class="line">    map.put(i, <span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">KeySet：           <span class="number">392</span></div><div class="line">Values：           <span class="number">320</span></div><div class="line"><span class="function">keySet <span class="title">get</span><span class="params">(key)</span>：  552</span></div><div class="line"><span class="function">entrySet：         465</span></div><div class="line"><span class="function">entrySet Iterator：508</span></div><div class="line"><span class="function">Lambda：           536</span></div></pre></td></tr></table></figure>
+<p>需要说明的是，map存储的数据类型，map的大小，以及map的不同实现方式都会影响遍历的性能，所以该测试结果仅供参考</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果只是获取key，或者value，推荐使用keySet或者values方式</p>
+<p>如果同时需要key和value推荐使用entrySet</p>
+<p>如果需要在遍历过程中删除元素推荐使用Iterator</p>
+<p>如果需要在遍历过程中增加元素，可以新建一个临时map存放新增的元素，等遍历完毕，再把临时map放到原来的map中</p>
 
       
 
@@ -322,7 +345,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#keySet-values"><span class="toc-number">1.</span> <span class="toc-text">keySet values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#keySet-get-key"><span class="toc-number">2.</span> <span class="toc-text">keySet get(key)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#entrySet"><span class="toc-number">3.</span> <span class="toc-text">entrySet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator"><span class="toc-number">4.</span> <span class="toc-text">Iterator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda"><span class="toc-number">5.</span> <span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单性能测试"><span class="toc-number">6.</span> <span class="toc-text">简单性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
