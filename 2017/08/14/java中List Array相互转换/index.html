@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://zhaoguhong.com">
   <title>java中List Array相互转换 | 赵孤鸿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="List to ArrayList 提供了toArray的接口，所以可以直接调用,转为object型数组 12List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();Object[] array=list.toArray(); 当然也可以指定类型 1String[] array=list.toArray(new String[list.siz">
+  <meta name="description" content="List to ArrayLi">
 <meta name="keywords" content="jdk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中List Array相互转换">
 <meta property="og:url" content="http://zhaoguhong.com/2017/08/14/java中List Array相互转换/index.html">
 <meta property="og:site_name" content="赵孤鸿">
-<meta property="og:description" content="List to ArrayList 提供了toArray的接口，所以可以直接调用,转为object型数组 12List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();Object[] array=list.toArray(); 当然也可以指定类型 1String[] array=list.toArray(new String[list.siz">
+<meta property="og:description" content="List to ArrayLi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-17T07:17:09.000Z">
+<meta property="og:updated_time" content="2018-02-10T15:50:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java中List Array相互转换">
-<meta name="twitter:description" content="List to ArrayList 提供了toArray的接口，所以可以直接调用,转为object型数组 12List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();Object[] array=list.toArray(); 当然也可以指定类型 1String[] array=list.toArray(new String[list.siz">
+<meta name="twitter:description" content="List to ArrayLi">
   
     <link rel="alternative" href="/atom.xml" title="赵孤鸿" type="application/atom+xml">
   
@@ -169,20 +169,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="List-to-Array"><a href="#List-to-Array" class="headerlink" title="List to Array"></a>List to Array</h3><p>List 提供了toArray的接口，所以可以直接调用,转为object型数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">Object[] array=list.toArray();</div></pre></td></tr></table></figure>
-<p>当然也可以指定类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String[] array=list.toArray(<span class="keyword">new</span> String[list.size()]);</div></pre></td></tr></table></figure>
-<h3 id="Array-to-List"><a href="#Array-to-List" class="headerlink" title="Array to List"></a>Array to List</h3><p>最简单的方法似乎是这样</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String[] array = &#123;<span class="string">"java"</span>, <span class="string">"c"</span>&#125;;</div><div class="line">List&lt;String&gt; list = Arrays.asList(array);</div></pre></td></tr></table></figure>
-<p>但该方法存在一定的弊端，返回的list是Arrays里面的一个静态内部类，该类并未实现add,remove方法，因此在使用时存在局限性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</div><div class="line"><span class="comment">//  注意该ArrayList并非java.util.ArrayList</span></div><div class="line"><span class="comment">//  java.util.Arrays.ArrayList.ArrayList&lt;T&gt;(T[])</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运用ArrayList的构造方法是目前来说最完美的作法,代码简介，效率高</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;(Arrays.asList(array));</div><div class="line"></div><div class="line"><span class="comment">//ArrayList构造方法源码</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</div><div class="line">    elementData = c.toArray();</div><div class="line">    size = elementData.length;</div><div class="line">    <span class="comment">// c.toArray might (incorrectly) not return Object[] (see 6260652)</span></div><div class="line">    <span class="keyword">if</span> (elementData.getClass() != Object[].class)</div><div class="line">        elementData = Arrays.copyOf(elementData, size, Object[].class);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运用Collections的addAll方法也也是不错的解决办法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;(array.length);</div><div class="line">Collections.addAll(list, array);</div></pre></td></tr></table></figure>
-<h3 id="Array-or-List-分隔"><a href="#Array-or-List-分隔" class="headerlink" title="Array or List 分隔"></a>Array or List 分隔</h3><p>其实自己实现一个分隔list或者数组的方法也并不复杂，但强大的第三方库自然提供的有此类似的功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// org.apache.commons.lang3.StringUtils.join(Iterable&lt;?&gt;, String)</span></div><div class="line">StringUtils.join(list, <span class="string">","</span>)</div><div class="line"><span class="comment">// org.apache.commons.lang3.StringUtils.join(Object[], String)</span></div><div class="line">StringUtils.join(array, <span class="string">","</span>)</div></pre></td></tr></table></figure>
+        <p>List to Array<br>Li</p>
+
       
 
       
@@ -334,7 +322,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#List-to-Array"><span class="toc-number">1.</span> <span class="toc-text">List to Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-to-List"><span class="toc-number">2.</span> <span class="toc-text">Array to List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-or-List-分隔"><span class="toc-number">3.</span> <span class="toc-text">Array or List 分隔</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -446,11 +434,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
