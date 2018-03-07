@@ -103,20 +103,18 @@
   <meta name="keywords" content="数据结构与算法," />
 
 
-<meta name="description" content="冒泡排序是一种非常常见的排序算法。如同水中的一排泡泡，先冒出最大的一个泡泡。再冒出剩余泡泡中的最大泡泡，依次类推，它的排序规则如下：  从第一个元素开始，比较相邻的两个元素，如果后面的小于前面的，交换两个的位置，一直比较到最后一个 循环1中的操作，但已经确定的最大的元素不再参与比较 直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环  排序图示（图片来源网络） java实现用ja">
+<meta name="description" content="冒泡排序是一种非常常见的排序算法。如同水">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序算法之冒泡排序">
 <meta property="og:url" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/index.html">
 <meta property="og:site_name" content="赵孤鸿">
-<meta property="og:description" content="冒泡排序是一种非常常见的排序算法。如同水中的一排泡泡，先冒出最大的一个泡泡。再冒出剩余泡泡中的最大泡泡，依次类推，它的排序规则如下：  从第一个元素开始，比较相邻的两个元素，如果后面的小于前面的，交换两个的位置，一直比较到最后一个 循环1中的操作，但已经确定的最大的元素不再参与比较 直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环  排序图示（图片来源网络） java实现用ja">
+<meta property="og:description" content="冒泡排序是一种非常常见的排序算法。如同水">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif">
-<meta property="og:updated_time" content="2018-03-07T07:18:29.000Z">
+<meta property="og:updated_time" content="2018-03-07T07:47:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法之冒泡排序">
-<meta name="twitter:description" content="冒泡排序是一种非常常见的排序算法。如同水中的一排泡泡，先冒出最大的一个泡泡。再冒出剩余泡泡中的最大泡泡，依次类推，它的排序规则如下：  从第一个元素开始，比较相邻的两个元素，如果后面的小于前面的，交换两个的位置，一直比较到最后一个 循环1中的操作，但已经确定的最大的元素不再参与比较 直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环  排序图示（图片来源网络） java实现用ja">
-<meta name="twitter:image" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif">
+<meta name="twitter:description" content="冒泡排序是一种非常常见的排序算法。如同水">
 
 
 
@@ -369,32 +367,8 @@
       
 
       
-        <p>冒泡排序是一种非常常见的排序算法。如同水中的一排泡泡，先冒出最大的一个泡泡。再冒出剩余泡泡中的最大泡泡，依次类推，它的排序规则如下：</p>
-<ol>
-<li>从第一个元素开始，比较相邻的两个元素，如果后面的小于前面的，交换两个的位置，一直比较到最后一个</li>
-<li>循环1中的操作，但已经确定的最大的元素不再参与比较</li>
-<li>直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环</li>
-</ol>
-<h3 id="排序图示（图片来源网络）"><a href="#排序图示（图片来源网络）" class="headerlink" title="排序图示（图片来源网络）"></a>排序图示（图片来源网络）</h3><p><img src="/2017/09/03/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif" alt=""></p>
-<h3 id="java实现"><a href="#java实现" class="headerlink" title="java实现"></a>java实现</h3><p>用java实现一个简单的冒泡排序。为了便于理解，在寻找到第一个最大元素完成后，称之为第一趟，依次类推，可以发现一共需要n-1趟</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span>[] array = &#123;<span class="number">6</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>&#125;;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;<span class="comment">// 需要排序的趟数</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array.length - i - <span class="number">1</span>; j++) &#123;<span class="comment">// 每一趟需要比较的次数</span></div><div class="line">      <span class="keyword">if</span> (array[j + <span class="number">1</span>] &lt; array[j]) &#123;</div><div class="line">        <span class="keyword">int</span> variable = array[j + <span class="number">1</span>];</div><div class="line">        array[j + <span class="number">1</span>] = array[j];</div><div class="line">        array[j] = variable;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    System.out.println(<span class="string">"第"</span> + (i + <span class="number">1</span>) + <span class="string">"趟排序后的结果："</span> + Arrays.toString(array));</div><div class="line">  &#125;</div><div class="line">  System.out.println(<span class="string">"最终的排序结果："</span> + Arrays.toString(array));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>console</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">第<span class="number">1</span>趟排序后的结果：[<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>]</div><div class="line">第<span class="number">2</span>趟排序后的结果：[<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">第<span class="number">3</span>趟排序后的结果：[<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">最终的排序结果：[<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>]</div></pre></td></tr></table></figure>
-<h3 id="排序过程分析"><a href="#排序过程分析" class="headerlink" title="排序过程分析"></a>排序过程分析</h3><p>第一趟排序</p>
-<pre><code>排序前：[6, 2, 5, 3]
-排序后：[2, 5, 3, 6]
-6与2比较，然后互换位置，然后与5比较，互换位置，最后与3比较，互换位置,此时6在最后的位置，确定最大值6，一共比较3次
-</code></pre><p>第二趟排序</p>
-<pre><code>排序前：[2, 5, 3, 6]
-排序后：[2, 3, 5, 6]
-2与3比较，位置不变，然后5与3比较，然后互换位置，因为6的位置已经确定，所以5与6不再比较，一共比较2次
-</code></pre><p>第三趟排序</p>
-<pre><code>排序前：[2, 3, 5, 6]
-排序后：[2, 3, 5, 6]
-2与3比较，位置不变，5,6的位置已经确定，所以不再比较，一共比较1次
-</code></pre><p>由上面的分析可以看出，一共进行了1+2+…+n-1次比较。也就是n(n-1)/2次,即(N^2 - n)/2次,去除对结果影响不大的N^2 - n中的-n,以及系数0.5，得出时间复杂度为 O(N^2) (注：此处的时间复杂度自己尚未完全理解，希望明白的朋友可以给予解答)</p>
-<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>上述的排序还存在优化的空间，如果本来就是一列从小到大的数，按上述操作，很容易造成资源浪费。最理想的情况下，对于一列从小到大的数，进行n次比较，即可得出结果。如果某一趟排序中，没有出现互换操作，即表示已经得到了正确的结果，此时可以结束排序，示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span>[] array = &#123;<span class="number">6</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>&#125;;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;<span class="comment">// 需要排序的趟数</span></div><div class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;<span class="comment">// 默认不存在位置交换</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array.length - i - <span class="number">1</span>; j++) &#123;<span class="comment">// 每一趟需要比较的次数</span></div><div class="line">      <span class="keyword">if</span> (array[j + <span class="number">1</span>] &lt; array[j]) &#123;</div><div class="line">        flag = <span class="keyword">true</span>;<span class="comment">// 存在位置交换，修改flag为true</span></div><div class="line">        <span class="keyword">int</span> variable = array[j + <span class="number">1</span>];</div><div class="line">        array[j + <span class="number">1</span>] = array[j];</div><div class="line">        array[j] = variable;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!flag) &#123;</div><div class="line">      <span class="keyword">break</span>;<span class="comment">// 不存在位置交换 跳出循环</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  System.out.println(<span class="string">"最终的排序结果："</span> + Arrays.toString(array));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>冒泡排序是一种非常常见的排序算法。如同水</p>
+
       
     </div>
 
@@ -488,17 +462,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -589,22 +554,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序图示（图片来源网络）"><span class="nav-number">1.</span> <span class="nav-text">排序图示（图片来源网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java实现"><span class="nav-number">2.</span> <span class="nav-text">java实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序过程分析"><span class="nav-number">3.</span> <span class="nav-text">排序过程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">4.</span> <span class="nav-text">优化</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
