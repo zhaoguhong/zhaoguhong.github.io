@@ -111,12 +111,12 @@
 <meta property="og:site_name" content="赵孤鸿">
 <meta property="og:description" content="目录 什么是反射 初探 初始化 类 构造函数 属性 方法 总结 思考  什么是反射JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。 初探对反射的最初接触是学习jdbc时，加载数据库驱动时会这样写：Class.forName(“com.mysql.j">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/1161430/201706/1161430-20170603145554477-115301016.png">
-<meta property="og:updated_time" content="2018-03-07T06:07:19.000Z">
+<meta property="og:image" content="http://zhaoguhong.com/2017/05/28/java反射/java反射/1161430-20170603145554477-115301016.png">
+<meta property="og:updated_time" content="2018-03-07T07:18:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java反射">
 <meta name="twitter:description" content="目录 什么是反射 初探 初始化 类 构造函数 属性 方法 总结 思考  什么是反射JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。 初探对反射的最初接触是学习jdbc时，加载数据库驱动时会这样写：Class.forName(“com.mysql.j">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/1161430/201706/1161430-20170603145554477-115301016.png">
+<meta name="twitter:image" content="http://zhaoguhong.com/2017/05/28/java反射/java反射/1161430-20170603145554477-115301016.png">
 
 
 
@@ -383,7 +383,7 @@
 <h2 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a><span id="1">什么是反射</span></h2><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
 <h2 id="初探"><a href="#初探" class="headerlink" title="初探"></a><span id="2">初探</span></h2><p>对反射的最初接触是学习jdbc时，加载数据库驱动时会这样写：Class.forName(“com.mysql.jdbc.Driver”),当时似懂非懂的也不知道是什么意思，随着自己的不断学习，越来越感觉反射的神奇，让我们一起来揭开它的神秘面纱吧。</p>
 <p>学习一个知识，自然是最先从api开始，反射涉及的类，除了Class类之外，基本上都在java.lang.reflect包里面，常用的类有Constructor，Field，Method类等，AccessibleObject类是前面三个类的基类，主要包含设置安全性检查等方法，下面，我们看一下reflect包的结构</p>
-<p><img src="http://images2015.cnblogs.com/blog/1161430/201706/1161430-20170603145554477-115301016.png" width="350px"><br>可以看出，涉及的类并不多，让我一起来看一下其中比较常用的类的用法吧</p>
+<p><img src="java反射/1161430-20170603145554477-115301016.png" width="350px"><br>可以看出，涉及的类并不多，让我一起来看一下其中比较常用的类的用法吧</p>
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a><span id="3">初始化</span></h2><p>测试用例采用junit+log4j,新建一个test类，一个javabean</p>
 <p>其中name属性get,set方法用<strong>private修饰</strong></p>
 <p>User类</p>
