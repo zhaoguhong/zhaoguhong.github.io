@@ -111,12 +111,12 @@
 <meta property="og:site_name" content="赵孤鸿">
 <meta property="og:description" content="冒泡排序是一种非常常见的排序算法。如同水中的一排泡泡，先冒出最大的一个泡泡。再冒出剩余泡泡中的最大泡泡，依次类推，它的排序规则如下：  从第一个元素开始，比较相邻的两个元素，如果后面的小于前面的，交换两个的位置，一直比较到最后一个 循环1中的操作，但已经确定的最大的元素不再参与比较 直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环  排序图示（图片来源网络） java实现用ja">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif">
+<meta property="og:image" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif">
 <meta property="og:updated_time" content="2018-03-07T07:18:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法之冒泡排序">
 <meta name="twitter:description" content="冒泡排序是一种非常常见的排序算法。如同水中的一排泡泡，先冒出最大的一个泡泡。再冒出剩余泡泡中的最大泡泡，依次类推，它的排序规则如下：  从第一个元素开始，比较相邻的两个元素，如果后面的小于前面的，交换两个的位置，一直比较到最后一个 循环1中的操作，但已经确定的最大的元素不再参与比较 直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环  排序图示（图片来源网络） java实现用ja">
-<meta name="twitter:image" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif">
+<meta name="twitter:image" content="http://zhaoguhong.com/2017/09/03/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif">
 
 
 
@@ -375,7 +375,7 @@
 <li>循环1中的操作，但已经确定的最大的元素不再参与比较</li>
 <li>直到不确定大小顺序的元素剩余两个，然后对这两个进行比较，然后结束循环</li>
 </ol>
-<h3 id="排序图示（图片来源网络）"><a href="#排序图示（图片来源网络）" class="headerlink" title="排序图示（图片来源网络）"></a>排序图示（图片来源网络）</h3><p><img src="排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif" alt=""></p>
+<h3 id="排序图示（图片来源网络）"><a href="#排序图示（图片来源网络）" class="headerlink" title="排序图示（图片来源网络）"></a>排序图示（图片来源网络）</h3><p><img src="/2017/09/03/排序算法之冒泡排序/1161430-20170903221938015-1987528612.gif" alt=""></p>
 <h3 id="java实现"><a href="#java实现" class="headerlink" title="java实现"></a>java实现</h3><p>用java实现一个简单的冒泡排序。为了便于理解，在寻找到第一个最大元素完成后，称之为第一趟，依次类推，可以发现一共需要n-1趟</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span>[] array = &#123;<span class="number">6</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>&#125;;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;<span class="comment">// 需要排序的趟数</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array.length - i - <span class="number">1</span>; j++) &#123;<span class="comment">// 每一趟需要比较的次数</span></div><div class="line">      <span class="keyword">if</span> (array[j + <span class="number">1</span>] &lt; array[j]) &#123;</div><div class="line">        <span class="keyword">int</span> variable = array[j + <span class="number">1</span>];</div><div class="line">        array[j + <span class="number">1</span>] = array[j];</div><div class="line">        array[j] = variable;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    System.out.println(<span class="string">"第"</span> + (i + <span class="number">1</span>) + <span class="string">"趟排序后的结果："</span> + Arrays.toString(array));</div><div class="line">  &#125;</div><div class="line">  System.out.println(<span class="string">"最终的排序结果："</span> + Arrays.toString(array));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>console</p>
