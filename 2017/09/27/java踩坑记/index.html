@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.4" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+<meta name="description" content="1.String 相等稍微有点经验的程序员都会用equals比较而不是用 ==，但用equals就真的安全了吗，看下面的代码 1user.getName().equals(&quot;xiaoming&quot;); 有经验的老司机很快就能看到问题，如果user.getName()为null,就会抛出空指针异常，因此下面的写法更为稳妥 1&quot;xiaoming&quot;.equals(user.getName()); 当然这种写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java踩坑记">
+<meta property="og:url" content="http://zhaoguhong.com/2017/09/27/java踩坑记/index.html">
+<meta property="og:site_name" content="赵孤鸿">
+<meta property="og:description" content="1.String 相等稍微有点经验的程序员都会用equals比较而不是用 ==，但用equals就真的安全了吗，看下面的代码 1user.getName().equals(&quot;xiaoming&quot;); 有经验的老司机很快就能看到问题，如果user.getName()为null,就会抛出空指针异常，因此下面的写法更为稳妥 1&quot;xiaoming&quot;.equals(user.getName()); 当然这种写">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-27T09:35:51.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java踩坑记">
+<meta name="twitter:description" content="1.String 相等稍微有点经验的程序员都会用equals比较而不是用 ==，但用equals就真的安全了吗，看下面的代码 1user.getName().equals(&quot;xiaoming&quot;); 有经验的老司机很快就能看到问题，如果user.getName()为null,就会抛出空指针异常，因此下面的写法更为稳妥 1&quot;xiaoming&quot;.equals(user.getName()); 当然这种写">
+
+
+
+
+
+
+  <link rel="canonical" href="http://zhaoguhong.com/2017/09/27/java踩坑记/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>java踩坑记 | 赵孤鸿</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">赵孤鸿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhaoguhong.com/2017/09/27/java踩坑记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵孤鸿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵孤鸿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java踩坑记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-27T16:41:33+08:00">2017-09-27</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/jdk/" itemprop="url" rel="index"><span itemprop="name">jdk</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-String-相等"><a href="#1-String-相等" class="headerlink" title="1.String 相等"></a>1.String 相等</h3><p>稍微有点经验的程序员都会用equals比较而不是用 ==，但用equals就真的安全了吗，看下面的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">user.getName().equals(<span class="string">"xiaoming"</span>);</div></pre></td></tr></table></figure>
+<p>有经验的老司机很快就能看到问题，如果user.getName()为null,就会抛出空指针异常，因此下面的写法更为稳妥</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"xiaoming"</span>.equals(user.getName());</div></pre></td></tr></table></figure>
+<p>当然这种写法并不是万能的，如果比对的两边都是未知变量,如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">user.getName().equals(user1.getName());<span class="comment">//user.getName() 和 user1.getName()都有可能为null</span></div></pre></td></tr></table></figure>
+<p>因此更为稳妥的方法可以采用jdk Objects类中的equals方法，左右两边都可以避免空指针异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Objects.equals(user.getName(), user1.getName());</div></pre></td></tr></table></figure>
+<p>需要注意的是Objects类在jdk1.7才支持，如果是jdk1.6,可以采用guava中的Objects类代替</p>
+<h3 id="2-Integer-比较"><a href="#2-Integer-比较" class="headerlink" title="2.Integer 比较"></a>2.Integer 比较</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Integer a = <span class="number">127</span>;</div><div class="line">Integer b = <span class="number">127</span>;</div><div class="line">Integer c = <span class="number">128</span>;</div><div class="line">Integer d = <span class="number">128</span>;</div><div class="line">System.out.println(a == b);<span class="comment">// 结果为：true</span></div><div class="line">System.out.println(c == d);<span class="comment">// 结果为：false</span></div></pre></td></tr></table></figure>
+<p>令人惊讶的是结果并不是预料中的全是true,而是一个为true,一个为false<br>至于原因还需要从源码中探究</p>
+<p>首先通过源码来看一下，当通过 = 对Integer赋值时，实际调用了Integer.valueOf()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</div><div class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</div><div class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</div><div class="line">&#125;</div><div class="line">```    </div><div class="line">可以看到当 i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high 时，是从一个缓存类中取，其它情况会<span class="keyword">new</span>一个对象。IntegerCache.low默认为-<span class="number">128</span>，high默认为<span class="number">127</span>（可调整）。</div><div class="line"></div><div class="line">这样a=b就很好解释了，因为==比较的是内存地址，a，b都是从这个缓存类中取的同一个对象，所以返回结果为<span class="keyword">true</span>。b,c则都是<span class="keyword">new</span>的新对象，内存地址自然不同，所以返回<span class="keyword">false</span></div><div class="line"></div><div class="line">既然看到了这个缓存类，就有必要一睹它的庐山真面目了</div><div class="line"></div><div class="line">```java</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="comment">// high value may be configured by property</span></div><div class="line">        <span class="keyword">int</span> h = <span class="number">127</span>;</div><div class="line">        String integerCacheHighPropValue =</div><div class="line">            sun.misc.VM.getSavedProperty(<span class="string">"java.lang.Integer.IntegerCache.high"</span>);</div><div class="line">        <span class="keyword">if</span> (integerCacheHighPropValue != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">int</span> i = parseInt(integerCacheHighPropValue);</div><div class="line">            i = Math.max(i, <span class="number">127</span>);</div><div class="line">            <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></div><div class="line">            h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        high = h;</div><div class="line"></div><div class="line">        cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</div><div class="line">        <span class="keyword">int</span> j = low;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</div><div class="line">            cache[k] = <span class="keyword">new</span> Integer(j++);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">IntegerCache</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">IntegerCache 是Integer类中一个静态内部类，high值可通过JVM 的启动参数设置</div><div class="line">### 3.Arrays.asList(array)</div><div class="line"></div><div class="line">```java</div><div class="line">String [] array= &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;;</div><div class="line"><span class="comment">// 返回的List实例为：java.util.Arrays.ArrayList</span></div><div class="line">List&lt;String&gt; list = Arrays.asList(array);</div><div class="line">list.remove(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>Arrays.asList是一种很常见的创建List的方式，但该方法返回的List实例不是平时常用的List实例，而是Arrays的一个静态内部类，该类继承自AbstractList类，并为提供List的完整的实现，例如remove方法就未实现，当然，如果只是用做遍历，则完全是没问题的</p>
+<p>类似的情况还有不少，使用时要注意，例如：</p>
+<ol>
+<li>ArrayList的subList方法，返回的是ArrayList中的一个内部类<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. HashMap的values方法，返回的是HashMap中的一个内部类：```java.util.HashMap.Values</div></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-list-toArray"><a href="#4-list-toArray" class="headerlink" title="4.list.toArray"></a>4.list.toArray</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">String[] array=(String[]) list.toArray();</div></pre></td></tr></table></figure>
+<p>上面的写法乍一看似乎没有什么问题，但list.toArray()返回的是一个object数组，强转会抛异常。其实是可以指定返回数组的类型的，如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String[] array=list.toArray(<span class="keyword">new</span> String[list.size()]);</div></pre></td></tr></table></figure>
+<h3 id="5-foreach-remove"><a href="#5-foreach-remove" class="headerlink" title="5.foreach remove"></a>5.foreach remove</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list =<span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">list.add(<span class="string">"java"</span>);</div><div class="line">list.add(<span class="string">"c"</span>);</div><div class="line">list.add(<span class="string">"js"</span>);</div><div class="line"><span class="keyword">for</span>(String str:list)&#123;</div><div class="line">  list.remove(<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在遍历时删除元素也是比较常用的操作，但foreach时删除元素有可能抛异常，这种不好控制的写法还是不用为好，可以用迭代器去代替</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (Iterator&lt;String&gt; iterator = list.iterator(); iterator.hasNext();) &#123;</div><div class="line">  String str = iterator.next();</div><div class="line">  iterator.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="6-String-getBytes"><a href="#6-String-getBytes" class="headerlink" title="6. String getBytes"></a>6. String getBytes</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=<span class="string">"韦德"</span>;</div><div class="line"><span class="keyword">byte</span>[] bytes = str.getBytes();</div></pre></td></tr></table></figure>
+<p>String的getBytes()方法用的是当前项目的默认编码，如果不指定编码，在不同的运行环境很容易被坑，所以还是根据自己的需要指定对应的编码比较靠谱</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=<span class="string">"韦德"</span>;</div><div class="line"><span class="keyword">byte</span>[] bytes = str.getBytes(<span class="string">"utf-8"</span>);</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/25/外面的雨还在下/" rel="next" title="外面的雨还在下">
+                <i class="fa fa-chevron-left"></i> 外面的雨还在下
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/学习站点/" rel="prev" title="学习站点">
+                学习站点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">赵孤鸿</p>
+              <p class="site-description motion-element" itemprop="description">zhaoguhong的博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-String-相等"><span class="nav-number">1.</span> <span class="nav-text">1.String 相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Integer-比较"><span class="nav-number">2.</span> <span class="nav-text">2.Integer 比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-list-toArray"><span class="nav-number">3.</span> <span class="nav-text">4.list.toArray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-foreach-remove"><span class="nav-number">4.</span> <span class="nav-text">5.foreach remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-String-getBytes"><span class="nav-number">5.</span> <span class="nav-text">6. String getBytes</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵孤鸿</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.4"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

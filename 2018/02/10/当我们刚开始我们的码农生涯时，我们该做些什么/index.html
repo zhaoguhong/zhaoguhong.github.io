@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.4" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+<meta name="description" content="最近公司新来了一个妹子，老大让我带。妹子大大的眼睛，一眨一眨的，灰常可爱。从她身上我仿佛看到了两年前的自己，从面对业务的各种懵逼，到完不成任务时主动加班，蓦然有一种恍如隔日的感觉。所以想和大家聊聊当我们刚开始我们的码农生涯时，我们该做些什么？ 写在前面先聊一下带妹子这两周的趣事，感觉很有意思。记得当老大说让我带妹子的时候，我的心情是这样的  然后事情并非总朝着预料中的方向发展，妹子说的对我说的最多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当我们刚开始我们的码农生涯时，我们该做些什么">
+<meta property="og:url" content="http://zhaoguhong.com/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/index.html">
+<meta property="og:site_name" content="赵孤鸿">
+<meta property="og:description" content="最近公司新来了一个妹子，老大让我带。妹子大大的眼睛，一眨一眨的，灰常可爱。从她身上我仿佛看到了两年前的自己，从面对业务的各种懵逼，到完不成任务时主动加班，蓦然有一种恍如隔日的感觉。所以想和大家聊聊当我们刚开始我们的码农生涯时，我们该做些什么？ 写在前面先聊一下带妹子这两周的趣事，感觉很有意思。记得当老大说让我带妹子的时候，我的心情是这样的  然后事情并非总朝着预料中的方向发展，妹子说的对我说的最多">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://zhaoguhong.com/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/1161430-20180210190110170-907437034.png">
+<meta property="og:image" content="http://zhaoguhong.com/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/1161430-20180210190218560-547592566.png">
+<meta property="og:updated_time" content="2018-04-27T09:35:51.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当我们刚开始我们的码农生涯时，我们该做些什么">
+<meta name="twitter:description" content="最近公司新来了一个妹子，老大让我带。妹子大大的眼睛，一眨一眨的，灰常可爱。从她身上我仿佛看到了两年前的自己，从面对业务的各种懵逼，到完不成任务时主动加班，蓦然有一种恍如隔日的感觉。所以想和大家聊聊当我们刚开始我们的码农生涯时，我们该做些什么？ 写在前面先聊一下带妹子这两周的趣事，感觉很有意思。记得当老大说让我带妹子的时候，我的心情是这样的  然后事情并非总朝着预料中的方向发展，妹子说的对我说的最多">
+<meta name="twitter:image" content="http://zhaoguhong.com/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/1161430-20180210190110170-907437034.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://zhaoguhong.com/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>当我们刚开始我们的码农生涯时，我们该做些什么 | 赵孤鸿</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">赵孤鸿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhaoguhong.com/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵孤鸿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵孤鸿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">当我们刚开始我们的码农生涯时，我们该做些什么</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T22:14:42+08:00">2018-02-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术周边/" itemprop="url" rel="index"><span itemprop="name">技术周边</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近公司新来了一个妹子，老大让我带。妹子大大的眼睛，一眨一眨的，灰常可爱。从她身上我仿佛看到了两年前的自己，从面对业务的各种懵逼，到完不成任务时主动加班，蓦然有一种恍如隔日的感觉。所以想和大家聊聊当我们刚开始我们的码农生涯时，我们该做些什么？</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>先聊一下带妹子这两周的趣事，感觉很有意思。记得当老大说让我带妹子的时候，我的心情是这样的</p>
+<p><img src="/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/1161430-20180210190110170-907437034.png" alt=""></p>
+<p>然后事情并非总朝着预料中的方向发展，妹子说的对我说的最多的一句话居然是</p>
+<blockquote>
+<p>大哥，我eclipse炸了<br>大哥，我eclipse又炸了<br>大哥，我eclipse又又炸了</p>
+</blockquote>
+<p>还好妹子没叫我大叔，我想对妹子说的是，虽然我长的有点着急，但头发少代表着睿智，真不代表年龄</p>
+<p><img src="/2018/02/10/当我们刚开始我们的码农生涯时，我们该做些什么/1161430-20180210190218560-547592566.png" alt=""></p>
+<p>妹子奉行着初入江湖无所畏惧的精神，刚来一周就光荣的提交了一个bug上线了，加班填坑的事就不说了，吓得我对妹子提交的代码必须要review，然后就有了下面的对话</p>
+<blockquote>
+<p>我：分号为什么不换行？<br>妹子：别人都没换，，，<br>我：你怎么知道这个地方能取到值？<br>妹子：我猜的，，，<br>我：记笔记咱能不能记到电脑上？<br>妹子：，，，<br>我：同样的代码你为啥要写四遍，不能抽象出来吗？<br>妹子：，，，<br>我：你这1，2，3是什么意思，这是魔术数字知不知道？<br>妹子：，，，</p>
+</blockquote>
+<p>最后，我想对妹子说，不是哥哥针对你，是因为你桌子上放的糖，总是不让我吃。额不，是因为你要打好基础，我都是为了你好，嗯，是这样的。</p>
+<h3 id="主动出击"><a href="#主动出击" class="headerlink" title="主动出击"></a>主动出击</h3><p>我说的可不是主动出击追妹子，而是当你以菜鸟的身份初入职场时。要主动出击了解公司的各种规章制度和项目流程。对于整个项目的开发流程，各种开发环境，版本控制管理，都要有所了解。</p>
+<p>不能糊里糊涂什么都等着别人安排，不然等到代码提交错分支或者连错数据库等问题时徒增尴尬。殊不知，或许这些信息项目的文档里都有，只是你没去看而已。</p>
+<h3 id="取人之长-补己之短"><a href="#取人之长-补己之短" class="headerlink" title="取人之长,补己之短"></a>取人之长,补己之短</h3><p>无知不可怕，可怕的是不自知。初入职场，遇到问题，虚心的像别人请教是快速成长的不二法门。或者你纠结了几天的问题，老司机一句话就点醒了你。</p>
+<p>但问问题要讲究方法，最起码是自己尝试过解决之后再去问。例如，项目启动不了，你要告诉给你解决问题的人：最近有没有改过什么东西；自己尝试过哪些解决办法；以及自己判断是什么原因造成的等。而不是简单一句：我项目启动不了了，帮我看看呗。</p>
+<p>善于学习而不迷信。多看看老司机写的代码，想一想如果自己的话该如何写，取其精华，去其糟粕。不加分辨一味地去模仿是不可取的。要养成自己独立思考的习惯。</p>
+<h3 id="承担责任"><a href="#承担责任" class="headerlink" title="承担责任"></a>承担责任</h3><p>不要因为自己是菜鸟而怕担责任，也不要因为给你分了简单的任务而暗自窃喜。回想自己的两年多码农生涯，让我成长最多的不是分分钟就写完的简单业务代码，也不是上来就可以复制粘贴的增删改查，而是折磨了我无数次的变态需求，还有那些加班加点的奋战。</p>
+<p>如果分任务的时候，每次你拿到的都是最轻松的，最简单的，恰恰也说明了你是团队中最无能的。如果你能主动承担相对麻烦的，有难度的任务，也许你会为此付出更多时间，会踩更多的坑，但这也恰恰是你成才的机会。</p>
+<h3 id="持续学习"><a href="#持续学习" class="headerlink" title="持续学习"></a>持续学习</h3><p>曾经，我认为“码农”二字只是对程序员的一句调侃而已，现如今却发现是不能再真的事实。如今的程序员犹如过江之鲫，何止百万。如若不能脱颖而出，必然要成为所谓三十五岁被辞退的一员。而持续学习则是不被淘汰的必经之路。</p>
+<p>如果你每天晚上有两个小时的空闲时间，以前全部都在打王者农药，现在你可以尝试分出来一个小时去学习。</p>
+<p><strong>如果你把一个小时交给了自由和享受，也不要忘了把另外一个小时交给梦想和责任。</strong></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><blockquote>
+<p>听说你们公司新来了一个妹子让你带啊<br>是啊<br>妹子哪的人呢<br>额，，，<br>有男朋友吗？<br>额，，，<br>有啥爱好？<br>额，，，</p>
+<p>这些你不知道，你说你知道啥<br>我知道妹子昨天提交的代码第168行多了一个分号</p>
+<p>这么说你是有对象喽<br>那个，new的算吗</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/01/2017总结：沉淀、反思、前行/" rel="next" title="2017总结：沉淀、反思、前行">
+                <i class="fa fa-chevron-left"></i> 2017总结：沉淀、反思、前行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/06/愿归来仍是少年/" rel="prev" title="愿归来仍是少年">
+                愿归来仍是少年 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">赵孤鸿</p>
+              <p class="site-description motion-element" itemprop="description">zhaoguhong的博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主动出击"><span class="nav-number">2.</span> <span class="nav-text">主动出击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取人之长-补己之短"><span class="nav-number">3.</span> <span class="nav-text">取人之长,补己之短</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#承担责任"><span class="nav-number">4.</span> <span class="nav-text">承担责任</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续学习"><span class="nav-number">5.</span> <span class="nav-text">持续学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最后"><span class="nav-number">6.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵孤鸿</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.4"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
