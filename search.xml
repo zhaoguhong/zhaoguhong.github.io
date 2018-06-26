@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo Next 主题]]></title>
+    <url>%2F2018%2F04%2F27%2Fhexo%20Next%20%E4%B8%BB%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[试了不少主题，最后还是觉得hexo最好用，简介，大方详细的配置可以看官网：http://theme-next.iissnan.com/ 标签hexo new page &quot;tags&quot; 然后编辑 ../source/tags/index.md --- title: 标签 date: 2018-03-02 11:22:22 type: &quot;tags&quot; --- 关于我hexo new page about 然后编辑 ../source/about/index.md --- title: 关于我 date: 2018-03-02 11:22:22 --- 分类$ hexo new page categories 然后编辑 ../categories/about/index.md --- title: 分类 date: 2018-03-02 11:22:22 type: &quot;categories&quot; --- 添加搜索npm install hexo-generator-searchdb –save 首先确认 _config.yml 中有 post_asset_folder:true 。安装此插件：在 hexo 目录，执行 npm install https://github.com/CodeFalling/hexo-asset-image –save]]></content>
+      <categories>
+        <category>技术周边</category>
+      </categories>
+      <tags>
+        <tag>博客 主题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[莫怪柔枝多自傲，芳心不喜浪蝶来]]></title>
     <url>%2F2018%2F04%2F12%2F%E8%8E%AB%E6%80%AA%E6%9F%94%E6%9E%9D%E5%A4%9A%E8%87%AA%E5%82%B2%EF%BC%8C%E8%8A%B3%E5%BF%83%E4%B8%8D%E5%96%9C%E6%B5%AA%E8%9D%B6%E6%9D%A5%2F</url>
     <content type="text"><![CDATA[下班后，刚走出公司的大楼，一阵凉风吹来，顿时感觉神清气爽。看看时间，刚过七点，此时回家实在有点太浪费这么好的天气，便决定去南京东路走一走，顺便买些春装。 背着程序员标配的电脑包，坐着拥挤的地铁，终于来到了南京东路。站在街道中间，望着路上的人来人往，有手拉手的一脸幸福的情侣，也有相约一起来逛街的闺蜜，当然还有拿着手机拍个不停的外国友人。我看着街道两边的霓虹闪烁，总感觉有一种不真实的感觉，仿佛自己置身于上个世界三十年代的老上海，看的久了，仿佛自己快要迷失在里面了。 我是一个不太会买衣服的人，也不认识什么牌子，便直接去了自己常去的美邦旗舰店。一个人逛街的好处就是自由，随心所欲，不用顾忌别人的想法，想在哪停留多久就停留多久。但坏处也显而易见，试衣服时连个帮忙拎包的都没有。 在看衬衫的时候自动过滤掉所有的格子衫，哪怕带条纹的都不行，毕竟我身上的程序员特征已经够多了，最后在各种颜色之间还是选择了白色。浅色衣服一直是我的最爱，虽然不耐脏，但就是没来由的喜欢。 闲逛时意外发现了一个很中意的休闲背包，很是喜欢。但拿起来仔细看的时候，总感觉哪里不对，后来突然明白，这个背包是个学生背包，充满了青春的气息，早已不适合自己了。 在回去的地铁口，看到了一个乞讨的老奶奶，衣着朴素，蹲在地上一直低着头对过往的行人点头。一般遇到这种情况我身上有零钱都会给的，至于是否是骗子我倒不怎么在乎，只是为了图一个心安而已。可惜在这个只有手机还有电就可以跑遍全上海的时代，摸遍了全身的口袋也没找到一个钢镚，最后只好作罢。我相信这个老奶奶不是骗子，祝愿她的生活会原来越好。 到家的时候，发现门把手上居然挂这个袋子，里面有一瓶玫瑰酒。想来是隔壁的邻居晚上想找我小酌两杯。可惜我迟迟未归，就挂在门把手上，真是有心的好邻居。 酒瓶上有一首诗，我颇为喜欢 东风送艳到亭台，丰露笼烟带刺开。莫怪柔枝多自傲，芳心不喜浪蝶来。 真是万紫争艳我不喜，千红落尽我独开。]]></content>
